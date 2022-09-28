@@ -12,3 +12,22 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.shadow {
+  filter: drop-shadow(0 1vmin 1vmin black);
+  bottom: 2rem;
+  left: 25%;
+}
+
+.shadow::before {
+  content: '';
+  position: absolute;
+  width: 3vmin;
+  height: 0vmin;
+  background: black;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  box-shadow: 0 0 3vmin 1.9vmin rgb(112, 109, 109);
+  left: 25%;
+  top: 2vmin;
+}
+
