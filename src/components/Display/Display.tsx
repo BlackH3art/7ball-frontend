@@ -39,15 +39,22 @@ export const Display: FC = () => {
 
   return (
     <>
-      <section className="w-full h-[20vh] flex justify-center">
-        <div className="flex mx-auto h-full w-[95%] lg:w-4/5 xl:w-3/5 justify-center">
+      <section className="w-full flex justify-center">
+        <div className="flex flex-col mx-auto h-full w-[95%] overflow-hidden lg:w-4/5 xl:w-3/5 items-center py-10">
 
-          {luckyNumbers.map((item, index) => (
-            <Ball 
-              key={index}
-              number={item}
-            />
-          ))}
+          <h2 className="font-bold text-3xl pt-12 pb-8">
+            This weeks lucky numbers are:
+          </h2>
+
+          <div className="flex">
+            {luckyNumbers.map((item, index) => (
+              <Ball 
+                key={index}
+                number={item}
+                idx={index}
+              />
+            ))}
+          </div>
 
         </div>
       </section>
