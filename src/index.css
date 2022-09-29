@@ -10,5 +10,48 @@
 
 :root {
   font-family: 'Courier New', Courier, monospace;
+  --yellow-light: #ffff93;
+  --yellow-dark: #ffff76;
+  --blue-light: #84d2ff;
+  --blue-dark: #6dc9ff;
+  --green-light: #98ff98;
+  --green-dark: #82ff82;
+  --orange-light: #ffc74f;
+  --orange-dark: #ffbd2e;
+}
+
+.shadow {
+  filter: drop-shadow(0 1vmin 1vmin black);
+  bottom: 2rem;
+  left: 25%;
+}
+
+.shadow::before {
+  content: '';
+  position: absolute;
+  width: 3vmin;
+  height: 0vmin;
+  background: black;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  box-shadow: 0 0 3vmin 1.9vmin rgb(112, 109, 109);
+  left: 25%;
+  top: 2vmin;
+}
+
+.yellow-ball {
+  background-image: linear-gradient(145deg, var(--yellow-light) 0%, var(--yellow-dark) 30%);
+}
+
+.green-ball {
+  background-image: linear-gradient(145deg, var(--green-light) 0%, var(--green-dark) 30%);
+}
+
+.blue-ball {
+  background-image: linear-gradient(145deg, var(--blue-light) 0%, var(--blue-dark) 30%);
+}
+
+.orange-ball {
+  background-image: linear-gradient(145deg, var(--orange-light) 0%, var(--orange-dark) 30%);
 }
 

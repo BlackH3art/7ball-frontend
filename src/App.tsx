@@ -8,6 +8,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { Navigation } from "./components/Navigation/Navigation";
 
 import '@rainbow-me/rainbowkit/styles.css';
+import { Display } from "./components/Display/Display";
 
 const ethersProvider = new ethers.providers.AlchemyProvider("maticmum");
 const { chains, provider } = configureChains(
@@ -39,6 +40,7 @@ const App: FC = () => {
         <RainbowKitProvider chains={chains}>
 
           <Navigation />
+            <Display />
 
         </RainbowKitProvider>
       </WagmiConfig>
