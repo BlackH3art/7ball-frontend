@@ -1,19 +1,13 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useContext, useEffect, useState } from "react"
 import { Ball } from "./Ball"
 
-import { useContractRead, useContract } from "wagmi";
-import { contract, lotteryABI } from "../../constants/constants";
-import { ethers } from "ethers";
+import { ContractContext } from "../../context/ContractContext";
+import { toast } from "react-toastify";
 
 export const Display: FC = () => {
 
   const [luckyNumbers, setLuckyNumbers] = useState<number[]>([]);
-
-  const contractProvider = useContract({
-    addressOrName: contract,
-    contractInterface: lotteryABI,
-    signerOrProvider: new ethers.providers.AlchemyProvider("maticmum")
-  });
+  const { contractProvider } = useContext(ContractContext);
 
 
   useEffect(() => {
@@ -29,7 +23,7 @@ export const Display: FC = () => {
           await contractProvider.winningArray(5),
         ]);
       } catch (error) {
-
+        toast.error("Problem getting lucky numbers", { theme: "colored" });
       }
     }
 

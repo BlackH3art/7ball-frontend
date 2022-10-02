@@ -9,7 +9,7 @@
 }
 
 :root {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --yellow-light: #ffff93;
   --yellow-dark: #ffff76;
   --blue-light: #84d2ff;
@@ -18,6 +18,25 @@
   --green-dark: #82ff82;
   --orange-light: #ffc74f;
   --orange-dark: #ffbd2e;
+}
+
+body {
+  /* background-color: #111111; */
+  background-color: hsl(252, 56%, 5%);
+  min-height: 100vh;
+  /* background-image: 
+  radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+  radial-gradient(circle at 120% 45%, rgb(47, 104, 106) 0, transparent 50%), 
+  radial-gradient( at -20% 0%, #15e4ffad 0%, transparent 40%); */
+
+  background-image: 
+  /* radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%),  */
+  /* radial-gradient(circle at 120% 45%, rgb(47, 104, 106) 0, transparent 50%),  */
+  radial-gradient( at -10% 0%, hsla(252, 56%, 53%, 1) 0%, transparent 60%),
+  radial-gradient(circle at 130% -70%, rgba(151, 99, 248, 0.39) 0, transparent 50%); 
+
+  /* color: #b55bff; */
+
 }
 
 .shadow {
@@ -55,3 +74,48 @@
   background-image: linear-gradient(145deg, var(--orange-light) 0%, var(--orange-dark) 30%);
 }
 
+.ticket {
+  background-color: rgba(241, 241, 241, 0.062);
+  border-radius: 16px;
+}
+
+.ball {
+  position: absolute;
+  background: radial-gradient(circle, at 75% 30%,
+    #fff 5px,
+    #a16bfe 8%,
+    #7327f5 60%,
+    #a16bfe 100%
+  );
+  border-radius: 50%;  
+}
+
+.large-ball {
+  box-shadow: inset 0 0 20px #fff,
+              inset 10px 0 46px #eaf5fc,  
+              inset -20px -60px 100px #fde9ea,
+              0 0 90px #fff;
+  background-color: #8727f5;
+}
+
+.medium-ball {
+  box-shadow: inset 0 0 5px #fff,
+              inset 3px 0 12px #eaf5fc,  
+              inset -5px -15px 25px #fde9ea,
+              0 0 22px #fff;
+}
+
+.small-ball {
+  box-shadow: inset 0 0 5px #fff,
+              inset 3px 0 12px #eaf5fc,  
+              inset -5px -15px 25px #fde9ea,
+              0 0 22px #fff;
+}
+
+.balls-container:nth-child(2) {
+  transform: rotateZ(120deg);
+}
+
+.balls-container:nth-child(3) {
+  transform: rotateZ(240deg);
+}
