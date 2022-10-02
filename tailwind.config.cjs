@@ -8,6 +8,9 @@ module.exports = {
     extend: {
       boxShadow: {
         '3xl': '0 0 24px 0 rgba(0,0,0, 0.45) inset'
+      },
+      colors: {
+        'main-purple': '#b55bff'
       }
     },
   },

@@ -4,11 +4,15 @@ import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { ToastContainer } from 'react-toastify';
 
-import { Navigation } from "./components/Navigation/Navigation";
-
-import '@rainbow-me/rainbowkit/styles.css';
 import { Display } from "./components/Display/Display";
+import { Navigation } from "./components/Navigation/Navigation";
+import { TicketSection } from "./components/Ticket/TicketSection";
+
+import 'react-toastify/dist/ReactToastify.css';
+import '@rainbow-me/rainbowkit/styles.css';
+import { Main } from "./components/Main/Main";
 
 const ethersProvider = new ethers.providers.AlchemyProvider("maticmum");
 const { chains, provider } = configureChains(
@@ -39,8 +43,12 @@ const App: FC = () => {
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
 
+        <ToastContainer />
+
           <Navigation />
-            <Display />
+            <Main />
+            {/* <Display /> */}
+            <TicketSection />
 
         </RainbowKitProvider>
       </WagmiConfig>
