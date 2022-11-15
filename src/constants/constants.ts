@@ -1,4 +1,4 @@
-export const contract = "0xedfb275b567381510D7C5931B33E620fC9F985BB";
+export const contract = "0x16861f0b7FcD8d3bfD61e7Cd75c366f470f758a8";
 export const lotteryABI = [
   {
     "inputs": [
@@ -28,36 +28,66 @@ export const lotteryABI = [
     "type": "error"
   },
   {
+    "inputs": [],
+    "name": "OnlySimulatedBackend",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "addressToRewardBalance",
+    "outputs": [
+      {
         "internalType": "uint256",
-        "name": "updatedPrizePool",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "UpdatePrizePool",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint8[]",
-        "name": "array",
-        "type": "uint8[]"
-      }
-    ],
-    "name": "WinningArraySet",
-    "type": "event"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
-    "name": "adminFundProtocol",
+    "name": "adminFundContract",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "adminPool",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -66,9 +96,14 @@ export const lotteryABI = [
         "internalType": "address payable",
         "name": "withdrawTo",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
-    "name": "adminWithdrawAll",
+    "name": "adminWithdrawAdminPool",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -86,7 +121,7 @@ export const lotteryABI = [
         "type": "uint256"
       }
     ],
-    "name": "adminWithdrawFees",
+    "name": "adminWithdrawProtocolPool",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -122,6 +157,11 @@ export const lotteryABI = [
         "internalType": "uint8",
         "name": "sixth",
         "type": "uint8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "seventh",
+        "type": "uint8"
       }
     ],
     "name": "buyTicket",
@@ -132,20 +172,32 @@ export const lotteryABI = [
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "bytes",
         "name": "",
-        "type": "uint256"
+        "type": "bytes"
       }
     ],
-    "name": "fiveWinners",
+    "name": "checkUpkeep",
     "outputs": [
       {
-        "internalType": "address payable",
+        "internalType": "bool",
+        "name": "upkeepNeeded",
+        "type": "bool"
+      },
+      {
+        "internalType": "bytes",
         "name": "",
-        "type": "address"
+        "type": "bytes"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "claimReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -156,15 +208,41 @@ export const lotteryABI = [
         "type": "uint256"
       }
     ],
-    "name": "fourWinners",
+    "name": "drawnNumbersArray",
     "outputs": [
       {
-        "internalType": "address payable",
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "name": "performUpkeep",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -182,31 +260,12 @@ export const lotteryABI = [
   },
   {
     "inputs": [],
-    "name": "protocolFee",
+    "name": "protocolPool",
     "outputs": [
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "rangeArray",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -232,6 +291,13 @@ export const lotteryABI = [
   },
   {
     "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "requestId",
     "outputs": [
       {
@@ -245,67 +311,16 @@ export const lotteryABI = [
   },
   {
     "inputs": [],
-    "name": "resetGame",
+    "name": "test_fundContract",
     "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "sixWinners",
-    "outputs": [
-      {
-        "internalType": "address payable",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
+    "stateMutability": "payable",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "startLottery",
+    "name": "test_withdrawAll",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "threeWinners",
-    "outputs": [
-      {
-        "internalType": "address payable",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "ticketId",
-    "outputs": [
-      {
-        "internalType": "uint128",
-        "name": "",
-        "type": "uint128"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -322,19 +337,6 @@ export const lotteryABI = [
         "internalType": "address",
         "name": "",
         "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "ticketPrice",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -367,20 +369,14 @@ export const lotteryABI = [
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
       }
     ],
-    "name": "winningArray",
-    "outputs": [
-      {
-        "internalType": "uint8",
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   }
 ];
