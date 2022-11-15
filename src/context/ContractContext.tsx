@@ -24,7 +24,7 @@ export const ContractContexProvider: FC<Props> = ({ children }) => {
   const contractProvider = useContract({
     addressOrName: contract,
     contractInterface: lotteryABI,
-    signerOrProvider: new ethers.providers.AlchemyProvider("maticmum")
+    signerOrProvider: new ethers.providers.InfuraProvider("maticmum")
   });
 
   const contractSigner = useContract({

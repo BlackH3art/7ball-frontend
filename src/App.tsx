@@ -6,15 +6,13 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { ToastContainer } from 'react-toastify';
 
-import { Display } from "./components/Display/Display";
 import { Navigation } from "./components/Navigation/Navigation";
-import { TicketSection } from "./components/Ticket/TicketSection";
 
 import 'react-toastify/dist/ReactToastify.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { Main } from "./components/Main/Main";
 
-const ethersProvider = new ethers.providers.AlchemyProvider("maticmum");
+const ethersProvider = new ethers.providers.InfuraProvider("maticmum");
 const { chains, provider } = configureChains(
   
   [chain.polygonMumbai],
@@ -43,12 +41,10 @@ const App: FC = () => {
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
 
-        <ToastContainer />
+          <ToastContainer />
 
           <Navigation />
-            <Main />
-            {/* <Display /> */}
-            <TicketSection />
+          <Main />
 
         </RainbowKitProvider>
       </WagmiConfig>
