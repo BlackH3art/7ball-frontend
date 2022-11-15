@@ -1,7 +1,10 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import { Animation } from "./Animation";
 
 export const Main: FC = () => {
+
+  const { setShowTicketModal } = useContext(AppContext);
 
   return (
     <>
@@ -27,7 +30,10 @@ export const Main: FC = () => {
                 Learn more
               </button>
 
-              <button className="rounded-full ml-3 p-2 px-6 uppercase font-bold bg-main-purple">
+              <button 
+                className="rounded-full ml-3 p-2 px-6 uppercase font-bold bg-main-purple"
+                onClick={() => setShowTicketModal(true)}
+              >
                 Buy ticket
               </button>
             </div>
