@@ -8,7 +8,7 @@ export const Main: FC = () => {
 
   return (
     <>
-      <main className="flex w-full pt-20 justify-center">
+      <main className="flex w-full pt-20 justify-center min-h-[100vh]">
 
         <section className="flex w-3/5">
 

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TimeSpan: FC<Props> = ({ children, additionalClass }) => (
-  <span className={`${additionalClass ? additionalClass : ''} text-xl font-semibold text-gray-100 md:text-4xl text-center md:pb-12 mx-1`}>
+  <span className={`${additionalClass ? additionalClass : ''} text-xl font-light text-main-purple md:text-3xl text-center md:pb-12 mx-1`}>
     {children}
   </span>
 )
@@ -53,7 +53,7 @@ export const CountdownTimer: FC<CounterProps> = ({ timestamp }) => {
 
   return(
     <>
-      <div className="flex">
+      <div className="flex justify-center">
         <TimeSpan>
           {days}
         </TimeSpan>

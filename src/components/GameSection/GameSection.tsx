@@ -2,10 +2,20 @@ import { FC, useContext, useEffect, useState } from "react";
 import { ContractContext } from "../../context/ContractContext";
 import { CountdownTimer } from "./CountdownTimer";
 
+interface Props {
+  text: string;
+}
+
+const TimerTitle: FC<Props> = ({ text }) => (
+  <h2 className="text-white text-5xl font-bold text-center pb-5">
+    {text}
+  </h2>
+);
+
 export const GameSection: FC = () => {
 
-  const [timestamp, setTimestamp] = useState<number>(0)
-  const { contractProvider } = useContext(ContractContext);
+  const [timestamp, setTimestamp] = useState<number>(0);
+  const { contractProvider, gameIsOn } = useContext(ContractContext);
 
   useEffect(() => {
 
@@ -26,8 +36,18 @@ export const GameSection: FC = () => {
   return (
     <>
       <section className="w-full min-h-[100vh]">
+        <div className="w-3/5 flex flex-col items-center mx-auto">
 
-        <CountdownTimer timestamp={timestamp} />
+          <div className="">
+            {gameIsOn ? (
+              <TimerTitle text="Numbers will be drawn in:"/>
+            ) : (
+              <TimerTitle text="Lottery will start in:"/>
+            )}
+            <CountdownTimer timestamp={timestamp} />
+          </div>
+
+        </div>
       </section>
     </>
   )
