@@ -1,4 +1,4 @@
-export const contract = "0x8c5d4b2863d2944e09617b229a430216a5584784";
+export const contract = "0xCe9e6f5Fd39573FB615F75E9c0CEcF5EAf64aE01";
 export const lotteryABI = [
   {
     "inputs": [
@@ -36,6 +36,19 @@ export const lotteryABI = [
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isGameOn",
+        "type": "bool"
+      }
+    ],
+    "name": "GameIsOn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "previousOwner",
@@ -49,6 +62,37 @@ export const lotteryABI = [
       }
     ],
     "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "UpdatedBalances",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "interval",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdatedInterval",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "UpdatedNumbersDrawn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "UpdatedPrizePool",
     "type": "event"
   },
   {
