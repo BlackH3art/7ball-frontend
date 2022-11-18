@@ -11,15 +11,20 @@ export const SelectedBalls: FC = () => {
 
   async function getSelectedNumbers() {
     try {
-      setSelectedNumbers([
-        await contractProvider.drawnNumbersArray(0),
-        await contractProvider.drawnNumbersArray(1),
-        await contractProvider.drawnNumbersArray(2),
-        await contractProvider.drawnNumbersArray(3),
-        await contractProvider.drawnNumbersArray(4),
-        await contractProvider.drawnNumbersArray(5),
-        await contractProvider.drawnNumbersArray(6),
-      ]);
+
+      if(await contractProvider.gameIsOn()) {
+        return
+      } else {
+        setSelectedNumbers([
+          await contractProvider.drawnNumbersArray(0),
+          await contractProvider.drawnNumbersArray(1),
+          await contractProvider.drawnNumbersArray(2),
+          await contractProvider.drawnNumbersArray(3),
+          await contractProvider.drawnNumbersArray(4),
+          await contractProvider.drawnNumbersArray(5),
+          await contractProvider.drawnNumbersArray(6),
+        ]);
+      }
     } catch (error) {
       toast.error("Fetching drawn numbers went wrong", { theme: "colored" })
     }
@@ -31,6 +36,10 @@ export const SelectedBalls: FC = () => {
 
   contractProvider.on("UpdatedNumbersDrawn", () => {
     getSelectedNumbers();
+  });
+
+  contractProvider.on("GameReset", () => {
+    setSelectedNumbers([]);
   });
 
   return (
