@@ -38,8 +38,6 @@ export const TicketModal: FC = () => {
 
   const handleSubmit: FormEventHandler = async (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log('call');
-    
 
     try {
 
@@ -59,6 +57,7 @@ export const TicketModal: FC = () => {
         await txHash.wait();
 
         setSelectedNumbers([]);
+        setShowTicketModal(false);
         toast.success("Ticket sent to lottery! You can buy another one", { theme: "colored" });
 
       } else {

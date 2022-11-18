@@ -1,6 +1,8 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { ContractContext } from "../../context/ContractContext";
 import { CountdownTimer } from "./CountdownTimer";
+import { DrawingMachine } from "./DrawingMachine";
+import { PrizePool } from "./PrizePool";
 import { SelectedBalls } from "./SelectedBalls";
 
 interface Props {
@@ -49,6 +51,11 @@ export const GameSection: FC = () => {
           </div>
 
           <SelectedBalls />
+
+          <div className="w-full flex pt-24">
+            <DrawingMachine />
+            <PrizePool />
+          </div>
 
         </div>
       </section>

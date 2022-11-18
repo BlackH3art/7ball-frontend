@@ -10,17 +10,17 @@ export const SelectedBalls: FC = () => {
 
   async function getSelectedNumbers() {
 
-    // setSelectedNumbers([
-    //   await contractProvider.drawnNumbersArray(0),
-    //   await contractProvider.drawnNumbersArray(1),
-    //   await contractProvider.drawnNumbersArray(2),
-    //   await contractProvider.drawnNumbersArray(3),
-    //   await contractProvider.drawnNumbersArray(4),
-    //   await contractProvider.drawnNumbersArray(5),
-    //   await contractProvider.drawnNumbersArray(6),
-    // ]);
+    setSelectedNumbers([
+      await contractProvider.drawnNumbersArray(0),
+      await contractProvider.drawnNumbersArray(1),
+      await contractProvider.drawnNumbersArray(2),
+      await contractProvider.drawnNumbersArray(3),
+      await contractProvider.drawnNumbersArray(4),
+      await contractProvider.drawnNumbersArray(5),
+      await contractProvider.drawnNumbersArray(6),
+    ]);
 
-    setSelectedNumbers([1, 2, 3, 45, 21, 8, 44])
+    // setSelectedNumbers([1, 2, 3, 45, 21, 8, 44])
   }
 
   useEffect(() => {
