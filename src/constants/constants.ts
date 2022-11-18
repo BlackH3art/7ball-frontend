@@ -1,4 +1,4 @@
-export const contract = "0xCe9e6f5Fd39573FB615F75E9c0CEcF5EAf64aE01";
+export const contract = "0xb241DD53bAF17C2D3Fdf0FbC2F9FE2381e972FD5";
 export const lotteryABI = [
   {
     "inputs": [
@@ -43,6 +43,12 @@ export const lotteryABI = [
       }
     ],
     "name": "GameIsOn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "GameReset",
     "type": "event"
   },
   {
