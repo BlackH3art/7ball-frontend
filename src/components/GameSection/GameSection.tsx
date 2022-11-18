@@ -1,6 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { ContractContext } from "../../context/ContractContext";
 import { CountdownTimer } from "./CountdownTimer";
+import { SelectedBalls } from "./SelectedBalls";
 
 interface Props {
   text: string;
@@ -42,10 +43,12 @@ export const GameSection: FC = () => {
             {gameIsOn ? (
               <TimerTitle text="Numbers will be drawn in:"/>
             ) : (
-              <TimerTitle text="Lottery will start in:"/>
+              <TimerTitle text="Next lottery will start in:"/>
             )}
             <CountdownTimer timestamp={timestamp} />
           </div>
+
+          <SelectedBalls />
 
         </div>
       </section>

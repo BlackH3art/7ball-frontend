@@ -90,6 +90,16 @@ body {
   border-radius: 50%;  
 }
 
+.selected-ball {
+  background: radial-gradient(circle, at 75% 30%,
+    #fff 5px,
+    #a16bfe 8%,
+    #7327f5 60%,
+    #a16bfe 100%
+  );
+  border-radius: 50%; 
+}
+
 .large-ball {
   box-shadow: inset 0 0 20px #fff,
               inset 10px 0 46px #eaf5fc,  
