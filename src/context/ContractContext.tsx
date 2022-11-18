@@ -5,12 +5,12 @@ import { useContract } from "wagmi";
 import { contract, lotteryABI } from "../constants/constants";
 
 import { ContractContextInterface } from "../interfaces/ContractContextInterface";
+import { toast } from "react-toastify";
 
 
 export const ContractContext = createContext<ContractContextInterface>({
   contractProvider: new ethers.Contract(contract, lotteryABI),
   gameIsOn: false, 
-  prizePool: "",
 })
 
 interface Props {
@@ -20,7 +20,6 @@ interface Props {
 export const ContractContexProvider: FC<Props> = ({ children }) => {
 
   const [gameIsOn, setGameIsOn] = useState<boolean>(false);
-  const [prizePool, setPrizePool] = useState<string>("");
 
   const contractProvider = useContract({
     addressOrName: contract,
@@ -28,31 +27,27 @@ export const ContractContexProvider: FC<Props> = ({ children }) => {
     signerOrProvider: new ethers.providers.InfuraProvider("maticmum")
   });
 
-  useEffect(() => {
-
-    async function getContractState() {
-
+  async function getContractState() {
+    try {
       const isGameOn = await contractProvider.gameIsOn();
       setGameIsOn(isGameOn);
-
-      const pool = await contractProvider.prizePool();
-      setPrizePool(ethers.utils.formatEther(pool._hex));
-      
-      
-
-      
-
+    } catch (error) {
+      toast.error("Fetching contract state went wrong", { theme: "colored" });
     }
+  }
 
+  useEffect(() => {
     getContractState();
   }, []);
 
+  contractProvider.on("GameIsOn", (isGameOn: boolean) => {
+    setGameIsOn(isGameOn);
+  });
 
   return(
     <ContractContext.Provider value={{
       contractProvider,
       gameIsOn,
-      prizePool
     }}>
       {children}
     </ContractContext.Provider>

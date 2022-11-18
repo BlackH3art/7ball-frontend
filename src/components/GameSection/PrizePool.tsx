@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { FC, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { AppContext } from "../../context/AppContext";
 import { ContractContext } from "../../context/ContractContext";
 
@@ -10,13 +11,21 @@ export const PrizePool: FC = () => {
   const { setShowTicketModal } = useContext(AppContext);
 
   async function getPrizePool() {
-    const pool = await contractProvider.prizePool();
-    setCurrentPrize(ethers.utils.formatEther(pool._hex))
+    try {
+      const pool = await contractProvider.prizePool();
+      setCurrentPrize(ethers.utils.formatEther(pool._hex))
+    } catch (error) {
+      toast.error("Fetching prize pool went wrong", { theme: "colored" });
+    }
   };
 
   useEffect(() => {
     getPrizePool();
   }, []);
+
+  contractProvider.on("UpdatedPrizePool", () => {
+    getPrizePool();
+  });
 
   return (
     <>

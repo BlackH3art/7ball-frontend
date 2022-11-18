@@ -1,6 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ContractContext } from "../../context/ContractContext";
+import { toast } from "react-toastify";
 
 export const SelectedBalls: FC = () => {
 
@@ -9,23 +10,28 @@ export const SelectedBalls: FC = () => {
   const { contractProvider } = useContext(ContractContext);
 
   async function getSelectedNumbers() {
-
-    setSelectedNumbers([
-      await contractProvider.drawnNumbersArray(0),
-      await contractProvider.drawnNumbersArray(1),
-      await contractProvider.drawnNumbersArray(2),
-      await contractProvider.drawnNumbersArray(3),
-      await contractProvider.drawnNumbersArray(4),
-      await contractProvider.drawnNumbersArray(5),
-      await contractProvider.drawnNumbersArray(6),
-    ]);
-
-    // setSelectedNumbers([1, 2, 3, 45, 21, 8, 44])
+    try {
+      setSelectedNumbers([
+        await contractProvider.drawnNumbersArray(0),
+        await contractProvider.drawnNumbersArray(1),
+        await contractProvider.drawnNumbersArray(2),
+        await contractProvider.drawnNumbersArray(3),
+        await contractProvider.drawnNumbersArray(4),
+        await contractProvider.drawnNumbersArray(5),
+        await contractProvider.drawnNumbersArray(6),
+      ]);
+    } catch (error) {
+      toast.error("Fetching drawn numbers went wrong", { theme: "colored" })
+    }
   }
 
   useEffect(() => {
     getSelectedNumbers();
   }, []);
+
+  contractProvider.on("UpdatedNumbersDrawn", () => {
+    getSelectedNumbers();
+  });
 
   return (
     <>

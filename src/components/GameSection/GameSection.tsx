@@ -1,4 +1,5 @@
 import { FC, useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { ContractContext } from "../../context/ContractContext";
 import { CountdownTimer } from "./CountdownTimer";
 import { DrawingMachine } from "./DrawingMachine";
@@ -20,21 +21,26 @@ export const GameSection: FC = () => {
   const [timestamp, setTimestamp] = useState<number>(0);
   const { contractProvider, gameIsOn } = useContext(ContractContext);
 
-  useEffect(() => {
-
-    async function getTimestamp() {
+  async function getTimestamp() {
+    try {
       const interval = await contractProvider.interval();
       const last = await contractProvider.lastTimeStamp();
-
+  
       let time = parseInt(last._hex) + parseInt(interval._hex);
-
+  
       setTimestamp(time);
+    } catch (error) {
+      toast.error("Fetching timestamp went wrong", { theme: "colored" });
     }
+  }
 
+  useEffect(() => {
     getTimestamp();
-
   }, []);
 
+  contractProvider.on("UpdatedInterval", () => {
+    getTimestamp();
+  });
 
   return (
     <>
